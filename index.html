@@ -342,7 +342,7 @@ You can request access to, correction of, or deletion of your personal informati
 </div>
 <div>
 <div style="font-family: 'Syne', sans-serif; font-weight: 700; color: #F0F4F8; margin-bottom: 8px;">7. Contact</div>
-For any privacy-related questions: <strong style="color: #00E5A0;">visaro.au@gmail.com</strong>
+For any privacy-related questions: <strong style="color: #00E5A0;">getvisaro@gmail.com</strong>
 </div>
 <div style="font-size: 0.78rem; color: #6B7E94; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px;">
 This policy may be updated as Visaro develops. Changes will be reflected on this page with an updated date.
@@ -353,34 +353,12 @@ This policy may be updated as Visaro develops. Changes will be reflected on this
 </div>
 
 <script>
-async function handleSignup(inputId, formId, successId) {
-const emailEl = document.getElementById(inputId);
-const email = emailEl.value.trim();
-
+function handleSignup(inputId, formId, successId) {
+const email = document.getElementById(inputId).value;
 if (!email || !email.includes('@')) {
-emailEl.style.borderColor = '#EF4444';
-setTimeout(() => { emailEl.style.borderColor = ''; }, 1500);
+document.getElementById(inputId).style.borderColor = '#EF4444';
+setTimeout(() => { document.getElementById(inputId).style.borderColor = ''; }, 1500);
 return;
-}
-
-const btn = emailEl.parentElement.querySelector('button');
-if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-
-try {
-await fetch('https://api.web3forms.com/submit', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({
-access_key: 'f5a962b9-ebd6-4103-bdc7-77dbfc08c098',
-email: email,
-subject: 'New Visaro Waitlist Signup',
-from_name: 'Visaro Waitlist'
-})
-});
-} catch (e) {}
-
-document.getElementById(formId).style.display = 'none';
-document.getElementById(successId).style.display = 'block';
 }
 document.getElementById(formId).style.display = 'none';
 document.getElementById(successId).style.display = 'block';
